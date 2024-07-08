@@ -1,0 +1,146 @@
+client GenerationTest;
+component MXCORE;
+layer Core;
+description "Put some useful description here ...";
+
+--------------------------------- FRAGMENTS ---------------------------------
+
+navigator {
+entry Employee toplevel at index 10 {
+label = "Employee";
+        entry EmployeeGroup;
+    }
+entry EmployeeGroup {
+label = "Employee Goups";
+        page EmployeeDetails;
+    }
+}
+
+
+-------------------------------- MAIN PAGES ---------------------------------
+
+page EmployeeDetails {
+    label = "Employee Details";
+
+    tabs {
+        tab {
+            label = "Zones / Panels";
+        }
+        tab {
+            label = "Scheduling";
+        }
+        tab {
+            label = "Applicability";
+        }
+        tab {
+            label = "Execution";
+        }
+        tab {
+            label = "Job Cards";
+        }
+        tab {
+            label = "Blocks";
+        }
+        tab {
+            label = "Revision";
+        }
+    }
+}
+
+
+--------------------------------- COMMANDS ----------------------------------
+
+command AcknowledgeCmd {
+label = "Acknowledge";
+
+   execute {
+call AcknowledgeAlert(
+      Code, 
+      AssmblKey, 
+      AssmblBomCd, 
+      ClassModeCd, 
+      Orgkey, 
+      RequirementDefinitionKey, 
+      ConfigSlotKey
+      );
+      success("Acknowledge");
+      exit OK;
+   }
+}
+command AnotherCmd {
+label = "Another";
+
+   execute {
+call AnotherFunction(
+      Param1, 
+      Param2, 
+      Param3
+      );
+      success("Another");
+      exit OK;
+   }
+}
+
+
+--------------------------------- SELECTORS ---------------------------------
+
+---------------------------------- GROUPS -----------------------------------
+group IdentificationGroup for ReqDetailsStructure {
+label = "Identification";
+
+    field Code;
+    field Status;
+    field Name;
+    field Revision;
+}
+group DetailsGroup for ReqDetailsStructure {
+label = "Details";
+
+    field Assembly;
+    field Class;
+}
+group DuplicateGroup for ReqDetailsStructure {
+label = "Test Duplicate Group";
+
+    field Assembly;
+    field Class;
+}
+
+----------------------------------- LISTS -----------------------------------
+
+list MxConfigList for MxConfigSet {
+label = "Test List 1";
+
+    field PropertyName;
+    field PropertyValue;
+    field Description;
+    field Category;
+}
+list AnotherList for AnotherEntitySet {
+label = "Another Test List";
+
+    field Field1;
+    field Field2;
+    field Field3;
+}
+
+
+---------------------------------- DIALOGS ----------------------------------
+
+-------------------------------- SINGLETONS ---------------------------------
+singleton GetWorkTypesSingleton for WorkTypeStructure {
+}
+
+---------------------------------- CHARTS ----------------------------------
+
+--------------------------------- CALENDERS ---------------------------------
+
+---------------------------------- SHEETS ----------------------------------
+
+----------------------------- STATE INDICATORS ------------------------------
+
+----------------------------------- TREES -----------------------------------
+
+---------------------------------- PLUGINS ----------------------------------
+
+------------------------------- IMAGE VIEWERS -------------------------------

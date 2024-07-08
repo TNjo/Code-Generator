@@ -1,0 +1,122 @@
+projection GenerationTest;
+component MXCORE;
+layer Core;
+description "Put some useful description here ...";
+category Users;
+
+--------------------------------- FRAGMENTS ---------------------------------
+
+----------------------------- MAIN ENTRY POINTS -----------------------------
+
+entityset MxConfigSet for MxConfig;
+
+
+------------------------------ ENTITY DETAILS -------------------------------
+
+------------------------------- ENUMERATIONS --------------------------------
+
+---------------------------------- QUERIES ----------------------------------
+
+query GetMaintenixRequirementDefinitions {
+from = "ad_requirement_definition_dm";
+
+   attribute RequirementDefinitionKey Text;
+   attribute OrganizationKey Text;
+   attribute Code Text;
+   attribute RevisionOrd Number;
+   attribute WorkTypeCd Text;
+   attribute EtopsBool Boolean("TRUE", "FALSE");
+   attribute PreventExecutionBool Boolean("TRUE", "FALSE");
+   attribute PreventExecutionReviewDt Date;
+}
+
+
+---------------------------------- ACTIONS ----------------------------------
+
+action AcknowledgeAlert {
+initialcheck none;
+implementation = "Java";
+
+   parameter Code Text;
+   parameter AssmblKey Text;
+   parameter AssmblBomCd Text;
+   parameter ClassModeCd Text;
+   parameter Orgkey Text;
+   parameter RequirementDefinitionKey Text;
+   parameter ConfigSlotKey Text;
+}
+action AnotherFunction {
+initialcheck none;
+implementation = "Java";
+
+   parameter Param1 Text;
+   parameter Param2 Text;
+   parameter Param3 Text;
+}
+
+
+--------------------------------- FUNCTIONS ---------------------------------
+
+function GetRequirementDetails List<Structure(ReqDetailsStructure)> {
+initialcheck none;
+implementation = "Java";
+
+   parameter RequirementDefinitionKey Text;
+   parameter RequirementName Text;
+   parameter RequirementType Text;
+   syncpolicy Online;
+}
+function AcknowledgeAlert List<Structure(ReqDetailsStructure1)> {
+initialcheck none;
+implementation = "Java";
+
+   parameter Code Text;
+   parameter AssmblKey Text;
+   parameter AssmblBomCd Text;
+   parameter ClassModeCd Text;
+   parameter Orgkey Text;
+   parameter RequirementDefinitionKey Text;
+   parameter ConfigSlotKey Text;
+   syncpolicy Online;
+}
+
+
+-------------------------------- STRUCTURES ---------------------------------
+
+structure ReqDetailsStructure {
+attribute RequirementDefinitionKey Text;
+attribute Code Text;
+attribute Status Text;
+attribute Name Text;
+attribute Revision Text;
+attribute Assembly Text;
+}
+
+structure ReqDetailsStructure1 {
+attribute Attribute1 Text;
+attribute Attribute2 Text;
+attribute Attribute3 Text;
+}
+
+
+
+--------------------------------- VIRTUALS ----------------------------------
+
+virtual IntlineTestVirtual {
+attribute FirstName Text;
+attribute LastName Text;
+attribute Description Text;
+attribute Age Number;
+attribute Address Text;
+}
+virtual EmployeeVirtual {
+attribute EmployeeID Number;
+attribute FirstName Text;
+attribute LastName Text;
+attribute Department Text;
+}
+
+
+--------------------------------- SUMMARIES ---------------------------------
+
+-------------------------------- SINGLETONS ---------------------------------
